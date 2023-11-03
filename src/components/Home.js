@@ -1,8 +1,16 @@
-import React from "react";
-import listaIphone from "../resource/Home_iphone.json";
+import React, { useEffect, useState } from "react";
+import {getListaIphone} from "../service/IphoneService";
 
 function Home() {
+    const [listaIphone, setListaIphone] = useState([])
 
+    useEffect(() => {
+        getListaIphone().then(respose => {
+            setListaIphone(respose.data.listaIphone)
+        }).catch(error => {
+            alert(error)
+        })
+      },[]);
 
     return (
        <div>HOME</div>
