@@ -14,16 +14,22 @@ function Home() {
     }, []);
 
     return (
-        <div className="grid-container">
-            <div className="row">
+        <div className="container" style={{marginTop:"1rem"}}>
+            <div className="row" >
                 {
-                listaIphone &&  listaIphone.length > 0 ?  listaIphone.map((iphone, index) => (
-                        <div className="col-md-4" style={{marginBottom:"1rem"}} key={index}>
-                            <div className="card" style={{ width: "18rem" }} key={index}>
-                                <img src={iphone.copertina} style={{width:"200px",height:"180px"}}  className="card-img-top" alt="immagine iphone" />
+                    listaIphone && listaIphone.length > 0 ? listaIphone.map((iphone, index) => (
+                        <div className="col" key={index}>
+                            <div className="card h-100 " key={index}>
+                                <img src={iphone.copertina} className="card-img-top" alt="immagine iphone" />
                                 <div className="card-body" >
-                                    <h5 className="card-title">{iphone.model}</h5>
-                                    <p className="card-text">{iphone.description}</p>
+                                    <div className="row">
+                                        <h5 className="card-title">{iphone.model}</h5>
+                                    </div>
+                                    <div className="row">
+                                        <p className="card-text justify-content"   >{iphone.description}</p>
+                                    </div>
+                                </div>
+                                <div className="card-footer-none bg-white">
                                     <p className="btn btn-primary">Dettagli</p>
                                 </div>
                             </div>
