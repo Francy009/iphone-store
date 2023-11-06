@@ -19,11 +19,11 @@ function Navbar() {
                 <div className=" navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <Link to="/contattaci">
-                            <a className="nav-link" href="#" >Contattaci</a>
+                            <p className="nav-link" >Contattaci</p>
                         </Link>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#" >Chi siamo</a>
-                        </li>
+                        <Link to="/chisiamo">
+                            <p className="nav-link" >Chi siamo</p>
+                        </Link>
                     </ul>
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

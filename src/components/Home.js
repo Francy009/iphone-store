@@ -24,7 +24,7 @@ function Home() {
                                 <div className="card-body" >
                                     <h5 className="card-title">{iphone.model}</h5>
                                     <p className="card-text">{iphone.description}</p>
-                                    <a href="#" className="btn btn-primary">Dettagli</a>
+                                    <p className="btn btn-primary">Dettagli</p>
                                 </div>
                             </div>
                         </div>
