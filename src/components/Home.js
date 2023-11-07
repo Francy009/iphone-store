@@ -19,14 +19,14 @@ function Home() {
                 {
                     listaIphone && listaIphone.length > 0 ? listaIphone.map((iphone, index) => (
                         <div className="col" key={index}>
-                            <div className="card h-100 " key={index}>
+                            <div className="card h-100 roudend " style={{border: "2px solid blue"}}  key={index} >
                                 <img src={iphone.copertina} className="card-img-top" alt="immagine iphone" />
                                 <div className="card-body" >
                                     <div className="row">
                                         <h5 className="card-title">{iphone.model}</h5>
                                     </div>
                                     <div className="row">
-                                        <p className="card-text justify-content"   >{iphone.description}</p>
+                                        <p className="card-text justify-content" >{iphone.description}</p>
                                     </div>
                                 </div>
                                 <div className="card-footer-none bg-white">
