@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { getListaIphone } from "../service/IphoneService";
+import { getListaIphone, getDettagliIphone } from "../service/IphoneService";
+import { useNavigate } from "react-router-dom";
+
+
 
 
 function Home() {
     const [listaIphone, setListaIphone] = useState([])
+    const navigate = useNavigate();
 
+   
     useEffect(() => {
         getListaIphone().then(respose => {
             setListaIphone(respose.data.listaIphone)
@@ -13,13 +18,17 @@ function Home() {
         })
     }, []);
 
+    const handleClick = (id) => {
+        navigate("/dettagli/"+id) 
+    }
+
     return (
-        <div className="container" style={{marginTop:"1rem"}}>
+        <div className="container" style={{ marginTop: "1rem" }}>
             <div className="row" >
                 {
                     listaIphone && listaIphone.length > 0 ? listaIphone.map((iphone, index) => (
                         <div className="col" key={index}>
-                            <div className="card h-100 roudend " style={{border: "2px solid blue"}}  key={index} >
+                            <div className="card h-100 roudend " style={{ border: "2px solid blue" }} key={index} >
                                 <img src={iphone.copertina} className="card-img-top" alt="immagine iphone" />
                                 <div className="card-body" >
                                     <div className="row">
@@ -30,7 +39,9 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className="card-footer-none bg-white">
-                                    <p className="btn btn-primary">Dettagli</p>
+                                    <button disabled={iphone.disponibile=="no"} 
+                                    onClick={()=>handleClick(iphone.id)} 
+                                    className="btn btn-primary mb-3">{iphone.disponibile=="si"?"Dettagli":"Non disponibile"}</button>
                                 </div>
                             </div>
                         </div>

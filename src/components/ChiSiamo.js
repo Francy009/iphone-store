@@ -2,7 +2,6 @@ import React from "react";
 import logo from "../resource/logo.svg"
 
 function Chisiamo() {
-
     return (
         <div className="container" style={{marginTop:"1rem"}}>
             <img src={logo} alt="logo" ></img>

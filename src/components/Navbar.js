@@ -21,7 +21,7 @@ function Navbar() {
                         <Link to="/contattaci">
                             <p className="nav-link" >Contattaci</p>
                         </Link>
-                        <Link to="/chisiamo">
+                        <Link to="/chi-siamo">
                             <p className="nav-link" >Chi siamo</p>
                         </Link>
                     </ul>
