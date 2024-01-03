@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faIdCard, faMobile, faMemory, faDollarSign, faCamera, faBatteryFull, faMicrochip, faLayerGroup, faCoins, faIcons } from '@fortawesome/free-solid-svg-icons';
-import { getDettagliIphone } from "../service/IphoneService";
+import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {
+    faIdCard,
+    faMobile,
+    faMemory,
+    faDollarSign,
+    faCamera,
+    faBatteryFull,
+    faMicrochip,
+    faLayerGroup,
+} from '@fortawesome/free-solid-svg-icons';
+import {getDettagliIphone} from "../service/IphoneService";
 
 function Dettagli() {
 
-    const { id } = useParams();
+    const {id} = useParams();
 
     const [dettagli, setDettagli] = useState([]);
 
@@ -31,11 +40,10 @@ function Dettagli() {
     }, [id])
 
 
-
     return (
-        <div className="container" >
+        <div className="container">
             <h1 className="text-center">{titolo}</h1>
-            <table className="table" >
+            <table className="table">
                 <tbody>
                     <tr className="row">
                         <tr className="col-md-1 mb-2" style={{ width: '100px', height: '100px', borderBottomWidth: '0' }}>
@@ -64,7 +72,7 @@ function Dettagli() {
                                     <td >{dettaglio.capacitaDellaBatteria}</td>
                                     <td >{dettaglio.memoriaRAM}</td>
                                     <td >{dettaglio.memoriaInterna}</td>
-                                    <td > {dettaglio.prezzo}</td>
+                                    <td >A partire da {dettaglio.prezzo}</td>
                                     <td>
                                         <button className="btn btn-primary " 
                                         disabled={dettaglio.pezziDisponibili == 0}>
@@ -73,10 +81,10 @@ function Dettagli() {
                                     </td>
                                 </tr>
 
-                            </tr>
+                        </tr>
 
-                        ))}
-                    </tr>
+                    ))}
+                </tr>
                 </tbody>
 
             </table>
@@ -84,4 +92,5 @@ function Dettagli() {
 
     )
 }
+
 export default Dettagli

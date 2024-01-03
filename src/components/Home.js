@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getListaIphone, getDettagliIphone } from "../service/IphoneService";
+import { getListaIphone } from "../service/IphoneService";
 import { useNavigate } from "react-router-dom";
 
 
@@ -39,9 +39,9 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className="card-footer-none bg-white">
-                                    <button disabled={iphone.disponibile=="no"} 
+                                    <button disabled={iphone.disponibile==="no"}
                                     onClick={()=>handleClick(iphone.id)} 
-                                    className="btn btn-primary mb-3">{iphone.disponibile=="si"?"Dettagli":"Non disponibile"}</button>
+                                    className="btn btn-primary mb-3">{iphone.disponibile==="si"?"Dettagli":"Non disponibile"}</button>
                                 </div>
                             </div>
                         </div>
