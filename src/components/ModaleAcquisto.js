@@ -1,35 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import {getDettagliIphone, getDettaglioAcquistoIphone} from "../service/IphoneService";
-
 export function ModaleAcquisto(props) {
     const [selectedMemoria, setSelectedMemoria] = useState("");
     const [selectedColorazione, setSelectedColorazione] = useState("");
 
-    const {id, mostraModale, chiudiModale, dettagli } = props
-    // const dettagli = {
-    //     "id": 4,
-    //     "immagine": "https://www.tradeinn.com/f/14037/140370793/apple-iphone-15-pro-max-512gb.jpg",
-    //     "nome": "iPhone 15 Pro Max",
-    //     "capacitaDellaBatteria": "3500 mAh",
-    //     "memoriaPrezzo": [
-    //         {"id": 0, "capacita": "256 GB", "prezzo": "1099 €"},
-    //         {"id": 1, "capacita": "512 GB", "prezzo": "1199 €"},
-    //         {"id": 2, "capacita": "1 TB", "prezzo": "1299 €"}
-    //     ],
-    //     "colorazioni": [
-    //         {"id": 0, "nome": "Pacific Blue"},
-    //         {"id": 1, "nome": "Graphite"},
-    //         {"id": 2, "nome": "Silver"}
-    //     ],
-    //     "pezziDisponibili": 1,
-    // };
+    const {mostraModale, chiudiModale, dettagli } = props
     const handleConferma = () => {
-        // Esegui azioni desiderate con le selezioni
         console.log("Memoria selezionata:", selectedMemoria);
         console.log("Colorazione selezionata:", selectedColorazione);
 
-        // Ottieni la configurazione corrispondente
         const memoriaSelezionata = dettagli.memoriaPrezzo.find((opzione) => opzione.id === parseInt(selectedMemoria, 10));
         const colorazioneSelezionata = dettagli.colorazioni.find((colorazione) => colorazione.id === parseInt(selectedColorazione, 10));
 
@@ -43,10 +22,8 @@ export function ModaleAcquisto(props) {
             immagine: dettagli.immagine,
         };
 
-        // Fai qualcosa con la nuova configurazione (ad esempio, salvare in uno stato, inviare a un server, ecc.)
         console.log("Nuova configurazione:", nuovaConfigurazione);
 
-        // Chiudi la modale
         chiudiModale();
     };
 
