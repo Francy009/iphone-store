@@ -14,3 +14,7 @@ export const contattaciPost=(body)=>{
 export const getDettagliIphone=(id)=>{
     return axios.get(SERVICE_IPHONE+ "dettagli-iphone/"+id)
 }
+
+export const getDettaglioAcquistoIphone=(id)=>{
+    return axios.get(SERVICE_IPHONE+ "dettaglio-acquisto-iphone/"+id)
+}
