@@ -11,7 +11,8 @@ import {
     faMicrochip,
     faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons';
-import {getDettagliIphone} from "../service/IphoneService";
+import {getDettagliIphone, getDettaglioAcquistoIphone} from "../service/IphoneService";
+import {ModaleAcquisto} from "./ModaleAcquisto";
 
 function Dettagli() {
 
@@ -21,13 +22,27 @@ function Dettagli() {
 
     const [titolo, setTitolo] = useState('');
 
-    const [listaIcone, setListaIcone] = useState([
+    const [listaIcone] = useState([
         faIdCard, faMobile,
         faMicrochip, faCamera,
         faBatteryFull, faMemory,
         faLayerGroup, faDollarSign,
 
     ])
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [iphone, setIphone] = useState({});
+    const chiudiModale =() =>{
+        setIsModalOpen(false)
+    }
+
+    const handleChangeAcquista = (id) =>{
+        getDettaglioAcquistoIphone(id).then(respose => {
+            setIphone(respose.data)
+            setIsModalOpen(true);
+        }).catch(error => {
+            alert(error)
+        })
+    }
 
 
     useEffect(() => {
@@ -75,8 +90,9 @@ function Dettagli() {
                                     <td >A partire da {dettaglio.prezzo}</td>
                                     <td>
                                         <button className="btn btn-primary " 
-                                        disabled={dettaglio.pezziDisponibili == 0}>
-                                       {dettaglio.pezziDisponibili == 0?'Non dispobile':'Acquista'}
+                                        disabled={dettaglio.pezziDisponibili === 0}
+                                        onClick={() => handleChangeAcquista(dettaglio.id)}>
+                                       {dettaglio.pezziDisponibili === 0?'Non dispobile':'Acquista'}
                                         </button>
                                     </td>
                                 </tr>
@@ -88,6 +104,10 @@ function Dettagli() {
                 </tbody>
 
             </table>
+            {isModalOpen && (
+                        <ModaleAcquisto dettagli = {iphone} mostraModale = {isModalOpen} chiudiModale={()=>chiudiModale()}/>
+                    )}
+
         </div>
 
     )
