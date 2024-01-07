@@ -1,29 +1,53 @@
 import React, {useState} from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import {addItemToCart} from "../redux/reducers/cart-reducer";
+import {useDispatch} from "react-redux";
+
 export function ModaleAcquisto(props) {
     const [selectedMemoria, setSelectedMemoria] = useState("");
     const [selectedColorazione, setSelectedColorazione] = useState("");
+    const dispatch = useDispatch();
+
+    const StyledLabel = styled.label`
+    margin-right: 8px; 
+    font-weight: bold;  
+`;
+    const StyledSelect = styled.select`
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        border-color: #888;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+`;
+
 
     const {mostraModale, chiudiModale, dettagli } = props
     const handleConferma = () => {
-        console.log("Memoria selezionata:", selectedMemoria);
-        console.log("Colorazione selezionata:", selectedColorazione);
-
         const memoriaSelezionata = dettagli.memoriaPrezzo.find((opzione) => opzione.id === parseInt(selectedMemoria, 10));
         const colorazioneSelezionata = dettagli.colorazioni.find((colorazione) => colorazione.id === parseInt(selectedColorazione, 10));
 
         // Crea il nuovo oggetto configurazione
-        const nuovaConfigurazione = {
+        const iphone = {
             id: dettagli.id,
             nome: dettagli.nome,
-            idMemoria: memoriaSelezionata.id,
-            idColorazione: colorazioneSelezionata.id,
+            memoria: memoriaSelezionata.capacita,
+            colore: colorazioneSelezionata.nome,
             prezzo: memoriaSelezionata.prezzo,
             immagine: dettagli.immagine,
+            quantita:1
         };
 
-        console.log("Nuova configurazione:", nuovaConfigurazione);
-
+        dispatch(addItemToCart(iphone));
         chiudiModale();
     };
 
@@ -35,8 +59,8 @@ export function ModaleAcquisto(props) {
             <Modal.Body className="d-flex flex-column align-items-center">
                 <img src={dettagli.immagine} alt={dettagli.nome} style={{ maxWidth: '100%', height: 'auto' }} />
                 <div className="my-3 w-100">
-                    <label htmlFor="memoriaSelect" className="mr-2">Seleziona la memoria:</label>
-                    <select
+                    <StyledLabel htmlFor="colorazioneSelect">Seleziona la colorazione:</StyledLabel>
+                    <StyledSelect
                         id="memoriaSelect"
                         value={selectedMemoria}
                         onChange={(e) => setSelectedMemoria(e.target.value)}
@@ -47,11 +71,11 @@ export function ModaleAcquisto(props) {
                                 {opzione.capacita}
                             </option>
                         ))}
-                    </select>
+                    </StyledSelect>
                 </div>
                 <div className="my-3 w-100">
-                    <label htmlFor="colorazioneSelect" className="mr-2">Seleziona la colorazione:</label>
-                    <select
+                    <StyledLabel htmlFor="colorazioneSelect" className="mr-2">Seleziona la colorazione:</StyledLabel>
+                    <StyledSelect
                         id="colorazioneSelect"
                         value={selectedColorazione}
                         onChange={(e) => setSelectedColorazione(e.target.value)}
@@ -62,14 +86,14 @@ export function ModaleAcquisto(props) {
                                 {colorazione.nome}
                             </option>
                         ))}
-                    </select>
+                    </StyledSelect>
                 </div>
                 <div className="my-3">
-                    <p>Prezzo: {dettagli.memoriaPrezzo.find((opzione) => opzione.id === parseInt(selectedMemoria, 10))?.prezzo}</p>
+                    <p>Prezzo: €{dettagli.memoriaPrezzo.find((opzione) => opzione.id === parseInt(selectedMemoria, 10))?.prezzo}</p>
                 </div>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={handleConferma} disabled={!selectedMemoria || !selectedColorazione}>
+                <Button variant="primary" onClick={()=>handleConferma()} disabled={!selectedMemoria || !selectedColorazione}>
                     Aggiungi al carrello
                 </Button>
             </Modal.Footer>
