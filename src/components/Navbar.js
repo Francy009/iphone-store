@@ -28,8 +28,6 @@ function Navbar() {
                         </Link>
                     </ul>
                     <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-success me-2" type="submit">Search</button>
                         <Link to="/carrello">
                             <button className="btn btn-success me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

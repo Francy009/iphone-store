@@ -1,8 +1,6 @@
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import store from "../redux/store";
+import {useDispatch, useSelector} from "react-redux";
 import {addDiscount, deleteItemfFromCart, updateQuantity} from "../redux/reducers/cart-reducer";
-import {useDispatch} from "react-redux";
 
 function Carrello() {
     const {cart, total} = useSelector(store => store.cart)

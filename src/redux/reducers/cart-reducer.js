@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {get} from "axios";
 
 const initialState = {
     cart: [],
