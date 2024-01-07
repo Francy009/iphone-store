@@ -35,7 +35,7 @@ function Dettagli() {
         setIsModalOpen(false)
     }
 
-    const handleChangeAcquista = (id) =>{
+    const handleClickAcquista = (id) =>{
         getDettaglioAcquistoIphone(id).then(respose => {
             setIphone(respose.data)
             setIsModalOpen(true);
@@ -91,7 +91,7 @@ function Dettagli() {
                                     <td>
                                         <button className="btn btn-primary " 
                                         disabled={dettaglio.pezziDisponibili === 0}
-                                        onClick={() => handleChangeAcquista(dettaglio.id)}>
+                                        onClick={() => handleClickAcquista(dettaglio.id)}>
                                        {dettaglio.pezziDisponibili === 0?'Non dispobile':'Acquista'}
                                         </button>
                                     </td>

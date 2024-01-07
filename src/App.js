@@ -5,6 +5,7 @@ import Dettagli from './components/Dettagli';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Carrello from "./components/Carrello";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/contattaci" element={<Contattaci />} />
           <Route path="/chi-siamo" element={<ChiSiamo />} />
           <Route path="/dettagli/:id" element={<Dettagli/>}/>
+          <Route path="/carrello" element={<Carrello/>}/>
         </Routes>
 
       </div>
